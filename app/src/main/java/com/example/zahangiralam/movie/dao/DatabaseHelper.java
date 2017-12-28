@@ -155,7 +155,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private ContentValues setMovieContentValues(Movie movie){
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        movie.getMovieImage().compress(Bitmap.CompressFormat.PNG, 0, out);
+        movie.getMovieImage().compress(Bitmap.CompressFormat.PNG, 100, out);
         ContentValues values = new ContentValues();
         byte[] buffer = out.toByteArray();
         values.put(KEY_MOVIE_NAME, movie.getMovieName());
