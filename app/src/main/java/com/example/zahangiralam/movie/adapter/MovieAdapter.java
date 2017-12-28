@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.zahangiralam.movie.MainActivity;
 import com.example.zahangiralam.movie.R;
 import com.example.zahangiralam.movie.dao.DatabaseHelper;
+import com.example.zahangiralam.movie.listener.ItemClickListener;
 import com.example.zahangiralam.movie.model.Movie;
 
 import java.util.List;
@@ -47,16 +48,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
         holder.textViewGenre.setText(String.valueOf(movie.getMovieGenre()));
         holder.imageView.setImageBitmap(movie.getMovieImage());
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.setItemClickListener(new ItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(mCtx, "You clicked movie no " + position, Toast.LENGTH_SHORT ).show();
-            }
-        });
-
-        holder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
+            public void onItemClick(View view, int position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
                 builder.setTitle("Delete Alert");
                 builder.setMessage("Do you want to delete this movie item?");
@@ -76,7 +70,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
                 });
                 builder.setCancelable(false);
                 builder.show();
-                return false;
             }
         });
     }
